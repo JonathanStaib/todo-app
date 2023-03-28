@@ -1,13 +1,31 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import useForm from '../../hooks/form';
 import { ToDoContext } from "../../Context/Settings";
 
 import { v4 as uuid } from 'uuid';
+import { List } from '../List';
+import { createStyles, Grid } from '@mantine/core';
 
-
+const useStyles = createStyles((theme) => ({
+  h1: {
+    backgroundColor: theme.colors.gray[3],
+    width: '80%',
+    margin: 'auto',
+    fontSize: theme.fontSizes.lg,
+    padding: theme.spacing.md,
+    marginTop: theme.spacing.md,
+    marginBottom: theme.spacing.md,
+  }
+}))
 const Todo = () => {
+  const {classes} = useStyles();
+  const { complete, displayCount, sort  } = useContext(ToDoContext);
 
-  const { list, setList, incomplete, setIncomplete, defaultValues } = useContext(ToDoContext)
+  const [defaultValues] = useState({
+    difficulty: 4,
+  });
+  const [list, setList] = useState([]);
+  const [incomplete, setIncomplete] = useState([]);
   const { handleChange, handleSubmit } = useForm(addItem, defaultValues);
 
   function addItem(item) {
@@ -46,6 +64,10 @@ const Todo = () => {
 
   return (
     <>
+      <h1 data-testid="todo-h1" className={classes.h1}>To Do List: {complete} items pending</h1>
+
+      <Grid style={{width: '80%', margin: 'auto'}}>
+        <Grid.Col xs={12} s={4}>
       <form onSubmit={handleSubmit}>
 
         <h2>Add To Do Item</h2>
@@ -69,16 +91,11 @@ const Todo = () => {
           <button type="submit">Add Item</button>
         </label>
       </form>
-
-      {list.map(item => (
-        <div key={item.id}>
-          <p>{item.text}</p>
-          <p><small>Assigned to: {item.assignee}</small></p>
-          <p><small>Difficulty: {item.difficulty}</small></p>
-          <div onClick={() => toggleComplete(item.id)}>Complete: {item.complete.toString()}</div>
-          <hr />
-        </div>
-      ))}
+      </Grid.Col>
+      </Grid>
+      <Grid.Col xs={12} s={4}>
+        <List list={} toggleComplete={}/>
+      </Grid.Col>
 
     </>
   );
