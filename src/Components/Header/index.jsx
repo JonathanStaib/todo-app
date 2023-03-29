@@ -13,7 +13,7 @@ const useStyles = createStyles((theme) => ({
 }))
 const Headers = () => {
   // const { complete } = useContext(ToDoContext);
-  const { classes } =useStyles();
+  const { classes } = useStyles();
   return(
     <>
       <Header>

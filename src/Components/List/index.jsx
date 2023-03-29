@@ -3,7 +3,7 @@ import { useContext, useState } from "react";
 import { ToDoContext } from "../../Context/Settings";
 
 const List = ({ list, toggleComplete}) => {
-  const {displayCount, complete, sort} = useContext(ToDoContext);
+  const {displayCount, complete} = useContext(ToDoContext);
   const {activePage, setPage } = useState(1);
 
   const listToRender = complete ? list : list.filter(item => !item.complete);
