@@ -3,15 +3,18 @@ import  Headers  from './Components/Header';
 import  Footer from './Components/Footer';
 
 import Todo from './Components/Todo';
+import SettingsForm from './Components/SettingsForm';
 
-export default class App extends React.Component {
-  render() {
+const App = () => {
+ 
     return (
       <>
       <Headers/>
       <Todo />
-      <Footer></Footer>
+      <SettingsForm/>
+      <Footer/>
       </>
     );
-  }
 }
+
+export default App;

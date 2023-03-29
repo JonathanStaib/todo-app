@@ -3,7 +3,7 @@ import useForm from '../../hooks/form';
 import { ToDoContext } from "../../Context/Settings";
 
 import { v4 as uuid } from 'uuid';
-import { List } from '../List';
+import List from '../List';
 import { createStyles, Grid } from '@mantine/core';
 
 const useStyles = createStyles((theme) => ({
@@ -19,7 +19,7 @@ const useStyles = createStyles((theme) => ({
 }))
 const Todo = () => {
   const {classes} = useStyles();
-  const { complete, displayCount, sort  } = useContext(ToDoContext);
+  const { complete } = useContext(ToDoContext);
 
   const [defaultValues] = useState({
     difficulty: 4,
@@ -92,10 +92,10 @@ const Todo = () => {
         </label>
       </form>
       </Grid.Col>
-      </Grid>
       <Grid.Col xs={12} s={4}>
-        <List list={} toggleComplete={}/>
+        <List list={list} toggleComplete={toggleComplete}/>
       </Grid.Col>
+      </Grid>
 
     </>
   );
