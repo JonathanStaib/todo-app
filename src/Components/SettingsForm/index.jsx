@@ -32,6 +32,7 @@ const SettingsForm = () => {
       <When condition={show}>
       </When>
       </form>
+      
     <Footer/>
     </>
   )
