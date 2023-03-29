@@ -1,5 +1,6 @@
 import { createStyles, Header, Text, Navbar } from "@mantine/core";
 import React from "react";
+import { Link } from "react-router-dom";
 // import { ToDoContext } from "../../Context/Settings";
 const useStyles = createStyles((theme) => ({
   navbar: {
@@ -9,6 +10,12 @@ const useStyles = createStyles((theme) => ({
     width: '100%',
     fontSize: theme.fontSizes.md,
     padding: theme.spacing.md
+  },
+  link: {
+    color: theme.colors.gray[0],
+    fontSize: theme.fontSizes.md,
+    padding: theme.spacing.md,
+    textDecoration: 'none',
   }
 }))
 const Headers = () => {
@@ -18,7 +25,8 @@ const Headers = () => {
     <>
       <Header>
         <Navbar className={classes.navbar}>
-          <Text>Home</Text>
+          <Link className={classes.link} to="/" >Home</Link>
+          <Link className={classes.link} to="/settings" >Settings</Link>
         </Navbar>
       </Header>
         {/* <h1 data-testid="todo-h1">To Do List: {complete} items pending</h1> */}

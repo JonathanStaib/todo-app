@@ -11,8 +11,8 @@ const Context = ({children}) => {
   const [displayCount, setDisplayCount] = useState(3);
   const [sort, setSort] = useState('difficulty')
   
-  const saveSettings = (settings) => {
-    localStorage.setItem('settings', JSON.stringify({settings}));
+  const saveSettings = () => {
+    localStorage.setItem('settings', JSON.stringify({displayCount, complete, sort}));
   }
 
   useEffect(() => {

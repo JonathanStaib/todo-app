@@ -4,15 +4,20 @@ import  Footer from './Components/Footer';
 
 import Todo from './Components/Todo';
 import SettingsForm from './Components/SettingsForm';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 const App = () => {
  
     return (
       <>
+      <BrowserRouter>
       <Headers/>
-      <Todo />
-      <SettingsForm/>
+      <Routes>
+        <Route path="/" element={<Todo/>}/>
+        <Route path="/settings" element={<SettingsForm/>}/>
+      </Routes>
       <Footer/>
+      </BrowserRouter>
       </>
     );
 }

@@ -1,10 +1,8 @@
 import React, { useContext, useState } from 'react';
-import Headers from "../Header";
-import Footer from "../Footer";
-import { Switch, NumberInput, TextInput, Button } from '@mantine/core';
+import { Switch, NumberInput, TextInput, Button, Grid, Card, Text } from '@mantine/core';
 import { ToDoContext } from '../../Context/Settings';
 import {When} from 'react-if';
-
+import { IconSettings } from '@tabler/icons-react';
 
 const SettingsForm = () => {
 
@@ -14,26 +12,43 @@ const SettingsForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setShow(true);
 
   }
   const handleClick = () => {
-    setShow(true);
+    setShow(true); 
   }
   return(
     <>
-    <Headers/>
-      <h1>Manage Settings</h1>
+      <h1>Manage Settings<IconSettings/></h1>
+
+      <Grid style={{width: '80%', margin: 'auto'}}>
+      <Grid.Col xs={12} s={4}>
+        <Card w border>
       <form onSubmit={handleSubmit}>
       <h2>Update Settings</h2>
       <Switch label="Show Completed ToDos" checked={complete} onChange={(e) => setComplete(e.currentTarget.checked)}/>
-      <NumberInput label="Items Per Page"/>
-      <TextInput label='Sort Difficulty' placeholder='difficulty'/>
+      <NumberInput label="Items Per Page"
+      defaultValue={10}
+      onChange={(value)=> setDisplayCount(value)}
+      />
+      <TextInput label='Sort Difficulty' placeholder='difficulty' onChange={(value)=> setSort(value)}/>
       <Button onClick={handleClick}>Show New Settings</Button>
-      <When condition={show}>
-      </When>
       </form>
-      
-    <Footer/>
+      </Card>
+      </Grid.Col> 
+
+      <Grid.Col xs={12} s={4}>
+      <When condition={show}>
+        <Card>
+          <Text m='xl' fontSize='xl' weight='bold'> Updated Settings</Text>
+          <Text m='sm'>{complete ? 'Show' : 'Hide'} Completed ToDos</Text>
+          <Text m="sm"> Items Per Page: {displayCount}</Text>
+          <Text m='sm'>Sort Keyword: {sort}</Text>
+        </Card>
+      </When>
+      </Grid.Col> 
+      </Grid>
     </>
   )
 }
