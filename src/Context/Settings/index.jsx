@@ -24,7 +24,7 @@ const Context = ({children}) => {
     }
   }, [])
   let values = { complete, setComplete, displayCount, setDisplayCount, sort, setSort, saveSettings }
-
+  console.log('values', values)
   return(
     <ToDoContext.Provider value={values}>
       {children}
