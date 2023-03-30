@@ -3,9 +3,11 @@ import { Switch, NumberInput, TextInput, Button, Grid, Card, Text } from '@manti
 import { ToDoContext } from '../../Context/Settings';
 import {When} from 'react-if';
 import { IconSettings } from '@tabler/icons-react';
+import useStyles from '../../hooks/styles';
 
 const SettingsForm = () => {
 
+  const { classes } = useStyles();
   const [show, setShow] = useState(false);
 
   const { complete, setComplete, setDisplayCount, displayCount, sort, setSort, saveSettings  } = useContext(ToDoContext);
@@ -13,14 +15,11 @@ const SettingsForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setShow(true);
-
-  }
-  const handleClick = () => {
-    setShow(true); 
+    saveSettings();
   }
   return(
     <>
-      <h1>Manage Settings<IconSettings/></h1>
+      <h1 className={classes.h1}>Manage Settings<IconSettings/></h1>
 
       <Grid style={{width: '80%', margin: 'auto'}}>
       <Grid.Col xs={12} s={4}>
@@ -29,11 +28,11 @@ const SettingsForm = () => {
       <h2>Update Settings</h2>
       <Switch label="Show Completed ToDos" checked={complete} onChange={(e) => setComplete(e.currentTarget.checked)}/>
       <NumberInput label="Items Per Page"
-      defaultValue={10}
+      defaultValue={3}
       onChange={(value)=> setDisplayCount(value)}
       />
       <TextInput label='Sort Difficulty' placeholder='difficulty' onChange={(value)=> setSort(value)}/>
-      <Button onClick={handleClick}>Show New Settings</Button>
+      <Button type="submit">Show New Settings</Button>
       </form>
       </Card>
       </Grid.Col> 

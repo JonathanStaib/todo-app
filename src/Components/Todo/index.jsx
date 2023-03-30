@@ -1,6 +1,5 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import useForm from '../../hooks/form';
-import { ToDoContext } from "../../Context/Settings";
 
 import { v4 as uuid } from 'uuid';
 import List from '../List';
@@ -19,7 +18,6 @@ const useStyles = createStyles((theme) => ({
 }))
 const Todo = () => {
   const {classes} = useStyles();
-  const { complete } = useContext(ToDoContext);
 
   const [defaultValues] = useState({
     difficulty: 4,
@@ -64,7 +62,7 @@ const Todo = () => {
 
   return (
     <>
-      <h1 data-testid="todo-h1" className={classes.h1}>To Do List: {complete} items pending</h1>
+      <h1 data-testid="todo-h1" className={classes.h1}>To Do List: {incomplete} items pending</h1>
 
       <Grid style={{width: '80%', margin: 'auto'}}>
         <Grid.Col xs={12} s={4}>
@@ -92,7 +90,7 @@ const Todo = () => {
         </label>
       </form>
       </Grid.Col>
-      <Grid.Col xs={12} s={4}>
+      <Grid.Col xs={12} s={8}>
         <List list={list} toggleComplete={toggleComplete}/>
       </Grid.Col>
       </Grid>
