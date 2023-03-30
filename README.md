@@ -10,7 +10,8 @@ Using the start code provide create a ToDo app that allows you to add items to y
 
 ### Links and Resources
 
-- [Deployed Site](https://ye9cpf-3000.csb.app/)
+- [Deployed Site](https://bpdrkm-3000.csb.app/) 
+jwt-decode is working remotely but not on my deployed sorry
 
 - Starter Code
 - Ryan Gallaway code review
