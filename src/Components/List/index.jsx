@@ -1,10 +1,14 @@
-import { Pagination, Card, Badge, Group, Text} from "@mantine/core";
+import { Pagination, Card, Badge, Group, Text, CloseButton} from "@mantine/core";
 import { useContext, useState } from "react";
+import { AuthContext } from "../../Context/Auth";
 import { ToDoContext } from "../../Context/Settings";
+import Auth from "../Auth";
+import { If, Then, Else } from "react-if";
 
-const List = ({ list, toggleComplete}) => {
+const List = ({ list, toggleComplete, deleteItem}) => {
 
   const {displayCount, complete} = useContext(ToDoContext);
+  const {can, loggedIn} = useContext(AuthContext);
   const [activePage, setPage ] = useState(1);
 
   console.log(list);
@@ -33,15 +37,34 @@ const List = ({ list, toggleComplete}) => {
           <Card.Section withBorder>
             <Group position="apart">
               <Group>
-                <Badge
+                <If condition={loggedIn && can('update')}>
+                 <Then>
+                  <Badge
                   onClick={() => toggleComplete(item.id)}
                   color={item.complete ? 'red': 'green'}
                   variant="filled"
                   m="3px"
                 >
                   {item.complete ? 'Complete' : 'Pending'}
-                </Badge>
-                <Text>{item.assignee}</Text>
+                 </Badge>
+                </Then>
+                <Else>
+                    <Badge
+                      color={item.complete ? 'red' : 'green'}
+                      variant="filled"
+                      m="3px"
+                    >
+                      {item.complete ? 'Complete' : 'Pending'}
+                    </Badge>
+                  </Else>
+                </If>
+                <Text data-testid={`${item._id}-assignee`}>{item.assignee}</Text>
+                <Auth capabilities='delete'>
+                  <CloseButton
+                    title="close item"
+                    onClick={()=> deleteItem(item._id)}
+                  />
+                </Auth>
               </Group>
             </Group>
           </Card.Section>

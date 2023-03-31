@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 export const ToDoContext = React.createContext();
 
-const Context = ({children}) => {
+const SettingsProvider = ({children}) => {
   // const [defaultValues] = useState({
   //   difficulty: 4,
   // });
@@ -23,6 +23,7 @@ const Context = ({children}) => {
       setSort(newSettings.sort);
     }
   }, [])
+  
   let values = { complete, setComplete, displayCount, setDisplayCount, sort, setSort, saveSettings }
   console.log('values', values)
   return(
@@ -33,4 +34,4 @@ const Context = ({children}) => {
 
 }
 
-export default Context;
+export default SettingsProvider;

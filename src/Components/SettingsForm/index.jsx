@@ -31,7 +31,7 @@ const SettingsForm = () => {
       defaultValue={3}
       onChange={(value)=> setDisplayCount(value)}
       />
-      <TextInput label='Sort Difficulty' placeholder='difficulty' onChange={(value)=> setSort(value)}/>
+      <TextInput label='Sort Difficulty' placeholder='difficulty' onChange={(e)=> setSort(e.target.value)}/>
       <Button type="submit">Show New Settings</Button>
       </form>
       </Card>

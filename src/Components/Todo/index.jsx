@@ -91,7 +91,7 @@ const Todo = () => {
       </form>
       </Grid.Col>
       <Grid.Col xs={12} s={8}>
-        <List list={list} toggleComplete={toggleComplete}/>
+        <List list={list} toggleComplete={toggleComplete} deleteItem={deleteItem}/>
       </Grid.Col>
       </Grid>
 
