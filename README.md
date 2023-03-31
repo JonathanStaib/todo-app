@@ -1,4 +1,4 @@
-# LAB - Class 31, 32, 33
+# LAB - Class 31, 32, 33 and 34
 
 ## Project: TODO
 
@@ -6,7 +6,7 @@
 
 ### Problem Domain
 
-Using the start code provide create a ToDo app that allows you to add items to your list. You can change your settings for showing completed tasks, the amount of items tasks you want displayed and what it is sorted by. These settings will be saved in your local storage You can also Login and Logout with Auth.
+Using the start code provide create a ToDo app that allows you to add items to your list and delete items from your list. You can change your settings for showing completed tasks, the amount of items tasks you want displayed and what it is sorted by. These settings will be saved in your local storage You can also Login and Logout with Auth.
 
 ### Links and Resources
 
@@ -25,6 +25,6 @@ npm start
 
 #### Features / Routes
 
-- adding items
+- adding and deleting items
 - login / logout
 - settings route to change your settings
