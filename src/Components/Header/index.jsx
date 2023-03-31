@@ -1,7 +1,7 @@
 import { createStyles, Header, Navbar } from "@mantine/core";
 import React from "react";
 import { Link } from "react-router-dom";
-// import Login from "../Login";
+import Login from "../Login";
 // import { AuthContext } from "../../Context/Auth";
 // import { ToDoContext } from "../../Context/Settings";
 const useStyles = createStyles((theme) => ({
@@ -30,8 +30,8 @@ const Headers = () => {
         <Navbar className={classes.navbar}>
           <Link className={classes.link} to="/" >Home</Link>
           <Link className={classes.link} to="/settings" >Settings</Link>
-        {/* <Login/> */}
         </Navbar>
+        <Login/>
       </Header>
         {/* <h1 data-testid="todo-h1">To Do List: {complete} items pending</h1> */}
     </>

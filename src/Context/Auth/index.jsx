@@ -1,6 +1,7 @@
 import testUsers from './lib/user';
 import jwt_decode from "jwt-decode";
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import cookie from 'react-cookies';
 
 export const AuthContext = React.createContext();
 
@@ -9,9 +10,9 @@ const AuthProvider = ({children}) => {
   const [ user, setUser ] = useState({});
   const [ error, setError ] = useState(null);
 
-  // const can = (capability) => {
-  //   return user?.capabilities?.includes(capability);
-  // }
+  const can = (capability) => {
+    return user?.capabilities?.includes(capability);
+  }
 
   const _validateToken = (token) => {
     try{
@@ -42,10 +43,17 @@ const AuthProvider = ({children}) => {
   const logout = () => {
     setUser({});
     setLoggedIn(false);
-  }
+  };
+  
+  useEffect(() => {
+    const cookieToken = cookie.load('auth');
+    _validateToken(cookieToken);
+  }, []);
+
+
 
   const values = {
-    loggedIn, user, error, login, logout
+    loggedIn, user, error, login, logout, can
   }
 
 console.log('values', values);
